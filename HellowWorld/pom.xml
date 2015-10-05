@@ -1,0 +1,172 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>HellowWorld</groupId>
+	<artifactId>HellowWorld</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>war</packaging>
+
+	<!-- <repositories> <repository> <id>mulesoft-releases</id> <name>MuleSoft 
+		Repository</name> <url>https://repository.mulesoft.org/releases/</url> </repository> 
+		</repositories> -->
+	<build>
+		<plugins>
+			<!-- <plugin> <groupId>org.mule.tools.javascript</groupId> <artifactId>npm-maven-plugin</artifactId> 
+				<version>1.0</version> <executions> <execution> <phase>generate-sources</phase> 
+				<goals> <goal>fetch-modules</goal> </goals> <configuration> <packages> <package>colors:0.5.1</package> 
+				<package>jshint:0.8.1</package> </packages> </configuration> </execution> 
+				</executions> </plugin> -->
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.3</version>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>2.6</version>
+				<configuration>
+					<failOnMissingWebXml>false</failOnMissingWebXml>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>fr.mastah.maven.plugin</groupId>
+				<artifactId>jsdoc3-maven-plugin</artifactId>
+				<version>1.0.11</version>
+				<executions>
+					<execution>
+						<id>jsdoc3</id>
+						<phase>process-classes</phase>
+						<goals>
+							<goal>jsdoc3</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<outputDirectory>${project.build.directory}/jsdoc3</outputDirectory>
+					<jsdocInputs>
+						<jsdocInput>
+							<jsDir>${basedir}/src/main/webapp/js</jsDir>
+							<pattern>.*.js</pattern>
+						</jsdocInput>
+					</jsdocInputs>
+					<jsdocExclusions>
+						<jsdocExclusion>intro.js</jsdocExclusion>
+						<jsdocExclusion>outro.js</jsdocExclusion>
+					</jsdocExclusions>
+					<options>-p</options>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+	<dependencies>
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-api</artifactId>
+			<version>2.4</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-core</artifactId>
+			<version>2.4</version>
+		</dependency>
+<!--
+		<dependency>
+			<groupId>org.webjars</groupId>
+			<artifactId>webjars-servlet-2.x</artifactId> 
+			<version>1.1</version>
+		</dependency>
+-->
+		<dependency>
+			<groupId>org.webjars.bower</groupId>
+			<artifactId>jquery</artifactId>
+			<version>2.1.4</version>
+		</dependency>
+		<dependency>
+			<groupId>org.webjars</groupId>
+			<artifactId>bootstrap</artifactId>
+			<version>3.1.0</version>
+		</dependency>
+		<!-- JavaScriptのドキュメント化用 -->
+		<dependency>
+			<groupId>fr.mastah.maven.plugin</groupId>
+			<artifactId>jsdoc3-maven-plugin</artifactId>
+			<version>1.0.11</version>
+		</dependency>
+		<!-- Wild Fly 9.x ビルド用 -->
+<!-- 
+		<dependency>
+			<groupId>org.jboss.spec.javax.servlet</groupId>
+			<artifactId>jboss-servlet-api_3.1_spec</artifactId>
+			<version>1.0.0.Final</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.jboss.resteasy</groupId>
+			<artifactId>resteasy-jaxrs</artifactId> 
+			<version>3.0.13.Final</version>
+		</dependency>
+		<dependency>
+			<groupId>org.jboss.spec.javax.ws.rs</groupId> 
+			<artifactId>jboss-jaxrs-api_2.0_spec</artifactId>
+			<version>1.0.0.Alpha1</version> 
+			<scope>provided</scope>
+		</dependency>
+-->
+		<!-- JAX-RS -->
+<!--
+		<dependency>
+			<groupId>org.glassfish.jersey.ext</groupId> 
+			<artifactId>jersey-mvc-jsp</artifactId>
+			<version>2.22</version>
+		</dependency> 
+		<dependency>
+			<groupId>com.sun.jersey</groupId>
+			<artifactId>jersey-server</artifactId> 
+			<version>1.8</version>
+		</dependency>
+		<dependency>
+			<groupId>com.sun.jersey.contribs</groupId> 
+			<artifactId>jersey-multipart</artifactId>
+			<version>1.8</version>
+		</dependency>
+		<dependency>
+			<groupId>com.sun.jersey</groupId>
+			<artifactId>jersey-server</artifactId>
+			<version>1.19</version>
+		</dependency>
+		<dependency>
+			<groupId>com.sun.jersey</groupId>
+			<artifactId>jersey-json</artifactId>
+			<version>1.19</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.ws.rs</groupId>
+			<artifactId>jsr311-api</artifactId> 
+			<version>1.1.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.glassfish.jersey.ext</groupId> 
+			<artifactId>jersey-mvc-jsp</artifactId>
+			<version>2.22</version>
+		</dependency> 
+		<dependency>
+			<groupId>com.sun.jersey</groupId>
+			<artifactId>jersey-server</artifactId> 
+			<version>1.8</version>
+		</dependency>
+		<dependency>
+			<groupId>com.sun.jersey.contribs</groupId> 
+			<artifactId>jersey-multipart</artifactId>
+			<version>1.8</version>
+		</dependency>
+		<dependency>
+			<groupId>org.mule.tools.javascript</groupId>
+			<artifactId>npm-maven-plugin</artifactId> 
+			<version>1.0</version>
+		</dependency>
+-->
+	</dependencies>
+</project>
